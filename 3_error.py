@@ -45,9 +45,12 @@ def page_not_found(e):
 # $env:FLASK_APP = "3_error.py" 
 # $env:FLASK_ENV = "development"
 # flask run
+
+### ACTIVATE THE VENV ###
 # venv_flask\Scripts\activartevenv\Scripts\activate
 
-# deactivate
+### SET UP A SSH KEYS ###
+# deactivate # VENV
 # cd ~/
 # pwd
 # mkdir .ssh
@@ -56,10 +59,27 @@ def page_not_found(e):
 # ssh-keygen.exe
 # ls
 # cat id_rsa.pub
+# In Github - click setting insert the id_rsa.pub
 
-# INITIALISE THE GITHUB
+### INITIALISE THE GITHUB ###
 # git config --global user.name "Kelvin-Data"
 # git config --global user.email "bhlohass@gmail.com"
 # git config --global push.default matching
 # git config --global alias.co checkout
 # git init
+
+### ADD FILE TO GITHUB ###
+# git add .
+# git commit -am 'initial commit' # saving your code
+
+# In Github - click your reponsitories 
+# Type the reponsitories name 
+# click the create reponsitories
+
+### PUSH EXISTING REPOSITORIES ###
+# git remote add origin https://github.com/Kelvin-Data/flask.git
+# git branch -M main
+# git push -u origin main
+
+### CHANGE FILE & ADD TO GITHUB ###
+# git add .
