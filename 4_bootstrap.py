@@ -40,50 +40,8 @@ def page_not_found(e):
 def page_not_found(e):
     return render_template('505.html'),500
 
+
 # Powershell
-# $env:FLASK_APP = "3_error.py" 
+# $env:FLASK_APP = "4_bootstrap.py" 
 # $env:FLASK_ENV = "development"
 # flask run
-
-# Add 404.html
-# Add 500.html
-
-### ACTIVATE THE VENV ###
-# venv_flask\Scripts\activate
-
-### SET UP A SSH KEYS ###
-# deactivate # VENV
-# cd ~/
-# pwd
-# mkdir .ssh
-# cd .ssh
-# pwd
-# ssh-keygen.exe
-# ls
-# cat id_rsa.pub
-# In Github - click setting insert the id_rsa.pub
-
-### INITIALISE THE GITHUB ###
-# git config --global user.name "Kelvin-Data"
-# git config --global user.email "bhlohass@gmail.com"
-# git config --global push.default matching
-# git config --global alias.co checkout
-# git init
-
-### ADD FILE TO GITHUB ###
-# git add .
-# git commit -am 'initial commit' # saving your code
-
-# In Github - click your reponsitories 
-# Type the reponsitories name 
-# click the create reponsitories
-
-### PUSH EXISTING REPOSITORIES ###
-# git remote add origin https://github.com/Kelvin-Data/flask.git
-# git branch -M main
-# git push -u origin main
-
-### CHANGE FILE & ADD TO GITHUB ###
-# git add .
-# git commit -am 'tweaked 500.html'
-# git push

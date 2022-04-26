@@ -1,2 +1,7 @@
-<h1>Hello {{ user_name | capitalize}}</h1>  <!--shift |--> 
+{% extends 'base.html' %}
 
+{% block content %}
+
+    <h1>Hello {{ user_name | capitalize}}</h1>  <!--shift |--> 
+
+{% endblock %}

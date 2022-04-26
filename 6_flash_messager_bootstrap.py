@@ -1,7 +1,16 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, flash
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
 
 # Create a Flask Instance
 app = Flask(__name__) # help flask find the directory & file
+app.config['SECRET_KEY'] = 'my super secret key that no one is supposed to know'
+
+# Create form class
+class NameForm(FlaskForm):
+    name = StringField("What's Your Name", validators=[DataRequired()])
+    submit =SubmitField("Submit")
 
 # Create a route decorator
 @app.route('/') # url www.about.html
@@ -13,6 +22,7 @@ def index():
     first_name = 'John'
      # stuff = 'This is <strong>Bold</strong> Text!' # for the striptags
     stuff = 'This is bold Text!'  # for the title
+    flash("Welcome To Our Website!") 
 
     favourite_pizza = ['Pepperoni', 'Cheese', 'Mushroom', 41]
     return render_template('index.html', 
@@ -40,50 +50,24 @@ def page_not_found(e):
 def page_not_found(e):
     return render_template('505.html'),500
 
+# Create Name Page
+@app.route('/name', methods=['GET','POST'])
+def name():
+    name = None
+    form = NameForm() # Refer classes
+    # Validate Form
+    if form.validate_on_submit():
+        name = form.name.data
+        form.name.data = ''
+        flash("Form Has Been Submitted")  # Flash message is here!
+
+    return render_template('name.html',
+        name = name,
+        form = form)
+
+# Add user.html
+
 # Powershell
-# $env:FLASK_APP = "3_error.py" 
+# $env:FLASK_APP = "6_flash_messager_bootstrap.py" 
 # $env:FLASK_ENV = "development"
 # flask run
-
-# Add 404.html
-# Add 500.html
-
-### ACTIVATE THE VENV ###
-# venv_flask\Scripts\activate
-
-### SET UP A SSH KEYS ###
-# deactivate # VENV
-# cd ~/
-# pwd
-# mkdir .ssh
-# cd .ssh
-# pwd
-# ssh-keygen.exe
-# ls
-# cat id_rsa.pub
-# In Github - click setting insert the id_rsa.pub
-
-### INITIALISE THE GITHUB ###
-# git config --global user.name "Kelvin-Data"
-# git config --global user.email "bhlohass@gmail.com"
-# git config --global push.default matching
-# git config --global alias.co checkout
-# git init
-
-### ADD FILE TO GITHUB ###
-# git add .
-# git commit -am 'initial commit' # saving your code
-
-# In Github - click your reponsitories 
-# Type the reponsitories name 
-# click the create reponsitories
-
-### PUSH EXISTING REPOSITORIES ###
-# git remote add origin https://github.com/Kelvin-Data/flask.git
-# git branch -M main
-# git push -u origin main
-
-### CHANGE FILE & ADD TO GITHUB ###
-# git add .
-# git commit -am 'tweaked 500.html'
-# git push

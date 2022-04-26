@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <br/>
+      <h2>You Search For: </h2>
+      <p>{{ searched }}</em></p>
+
+    <br/>
+    {% if posts %}
+    {% for post in posts %}
+       <a href="{{ url_for('post', id=post.id) }}">{{ post.title }}</a><br/>
+   
+    {% endfor %}
+
+        {% else %}
+            Sorry, your search item: <strong>{{ searched }}</strong> was not found...</br>
+            Please search again!!
+    {% endif %}
+
+{% endblock %}

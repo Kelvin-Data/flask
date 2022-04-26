@@ -1,40 +1,52 @@
-<h1>Hello World!</h1>
+{% extends 'base.html' %}
 
-<p>This is my first webpage!!!</p>
+{% block content %}
 
-<p>Isn't the cool!!!</p>
-
-<p>My name is {{ first_name }}</p>
-
-<p> {{ stuff | title }}</p>
-
-<!--{{ favourite_pizza }}-->
-
-<h3>Favourite Pizza</h3>
-
-{% for topping in favourite_pizza %} <!--use for the python function-->
-    {{ topping }}<br/> <!--user for the variable-->
-{% endfor %} <!--for loop-->
-
-<br/>
-{% for topping in favourite_pizza %} 
-
-    {% if topping == 41 %}
-        {{ topping + 100 }}
-    {% else %}
-        {{ topping }}<br/>
-    {% endif %}  <!--if statement-->
+    {% for message in get_flashed_messages() %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Hey {{ name }}, {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
      
-{% endfor %} 
-<br/><br/>
+    {% endfor %}
 
-{{ favourite_pizza.1 }}
-<br/><br/>
-{{ favourite_pizza.3 + 10 }}
-<br/><br/>
-{{ favourite_pizza.0 | reverse }}
+    <h1>Hello World!</h1>
 
+    <p>This is my first webpage!!!</p>
 
+    <p>Isn't the cool!!!</p>
+
+    <p>My name is {{ first_name }}</p>
+
+    <p> {{ stuff | title }}</p>
+
+    <!--{{ favourite_pizza }}-->
+
+    <h3>Favourite Pizza</h3>
+
+    {% for topping in favourite_pizza %} <!--use for the python function-->
+        {{ topping }}<br/> <!--user for the variable-->
+    {% endfor %} <!--for loop-->
+
+    <br/>
+    {% for topping in favourite_pizza %} 
+
+        {% if topping == 41 %}
+            {{ topping + 100 }}
+        {% else %}
+            {{ topping }}<br/>
+        {% endif %}  <!--if statement-->
+        
+    {% endfor %} 
+    <br/><br/>
+
+    {{ favourite_pizza.1 }}
+    <br/><br/>
+    {{ favourite_pizza.3 + 10 }}
+    <br/><br/>
+    {{ favourite_pizza.0 | reverse }}
+
+{% endblock %}
 <!--# FILTERS
  safe 
  capitalize
