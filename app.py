@@ -490,12 +490,19 @@ class Users(db.Model, UserMixin):
 # echo web: gunicorn app:app > Procfile
 # heroku login
 # heroku create flasker100
-# https://flasker100.herokuapp.com/ | https://git.heroku.com/flasker100.git
+# ==> https://flasker100.herokuapp.com/ | https://git.heroku.com/flasker100.git
 # heroku addons:create heroku-postgresql:hobby-dev --app flasker100
-# Created postgresql-vertical-43113 as DATABASE_URL
+# ==> Created postgresql-vertical-43113 as DATABASE_URL
 # heroku config --app flasker100
-# postgres://bykumakribcwqu:1a469d223591b39d36bb875d0b807aebafa386634f9a24523bfc52251d2ca828@ec2-3-211-6-217.compute-1.amazonaws.com:5432/d7m2dgc3utq5ib
+# ==> postgres://bykumakribcwqu:1a469d223591b39d36bb875d0b807aebafa386634f9a24523bfc52251d2ca828@ec2-3-211-6-217.compute-1.amazonaws.com:5432/d7m2dgc3utq5ib
 # git add .
 # git commit -am 'tweaked app for heroku'
 # git push
 # git push heroku main
+# support ticket : a7b5a1c6-808f-89b9-9518-384b5d648e41 
+# https://help.heroku.com/sharing/15668342-ff9e-4f00-8ca3-f6a37c09e281
+
+# heroku run python
+# >>> from app impport db
+# >>> db.create_all()
+# >>> exit()
