@@ -501,6 +501,7 @@ class Users(db.Model, UserMixin):
 # git push heroku main
 # support ticket : a7b5a1c6-808f-89b9-9518-384b5d648e41 
 # https://help.heroku.com/sharing/15668342-ff9e-4f00-8ca3-f6a37c09e281
+# https://help.heroku.com/sharing/c53ee8e2-0822-4623-9412-bdcf1508d133
 
 # heroku run python
 # >>> from app impport db
