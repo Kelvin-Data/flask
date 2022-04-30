@@ -20,8 +20,8 @@ app = Flask(__name__) # help flask find the directory & file
 ckeditor = CKEditor(app)
 
 # Add Old Database
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_2.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://bykumakribcwqu:1a469d223591b39d36bb875d0b807aebafa386634f9a24523bfc52251d2ca828@ec2-3-211-6-217.compute-1.amazonaws.com:5432/d7m2dgc3utq5ib'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_2.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://bykumakribcwqu:1a469d223591b39d36bb875d0b807aebafa386634f9a24523bfc52251d2ca828@ec2-3-211-6-217.compute-1.amazonaws.com:5432/d7m2dgc3utq5ib'
 
 # Secret key!
 app.config['SECRET_KEY'] = 'my super secret key that no one is supposed to know'
@@ -102,7 +102,7 @@ def add_user():
 @login_required
 def admin():
     id = current_user.id
-    if id == 1:
+    if id == 3:
         return render_template('admin.html')
     else: 
        flash("Sorry you must be an Admin in order to access the admin page!")
@@ -140,7 +140,7 @@ def dashboard():
         name_to_update.profile_pic = pic_name
         try:
             db.session.commit()
-            saver.save(os.path.join(app.config['UPLOAD_FOLDER']), pic_name)
+            saver.save(os.path.join(app.config['UPLOAD_FOLDER'], pic_name))
             flash('User Updated Successfully!')
             return render_template('dashboard.html',
                 form = form,
@@ -161,28 +161,33 @@ def dashboard():
 
 # Define delete 
 @app.route('/delete/<int:id>')
+@login_required
 def delete(id):
-    user_to_delete = Users.query.get_or_404(id)
-    name = None
-    form = UserForm() 
+    if id == current_user.id:
+        user_to_delete = Users.query.get_or_404(id)
+        name = None
+        form = UserForm() 
 
-    try:
-        db.session.delete(user_to_delete)
-        db.session.commit()
-        flash('User Deleted Successfully!')
+        try:
+            db.session.delete(user_to_delete)
+            db.session.commit()
+            flash('User Deleted Successfully!')
 
-        our_users = Users.query.order_by(Users.date_added)
-        return render_template('add_user.html',
-            form=form,
-            name=name,
-            our_users=our_users)
+            our_users = Users.query.order_by(Users.date_added)
+            return render_template('add_user.html',
+                form=form,
+                name=name,
+                our_users=our_users)
 
-    except:
-        flash('Whoops! There was a problem deleting user')
-        return render_template('add_user.html',
-            form=form,
-            name=name,
-            our_users=our_users)
+        except:
+            flash('Whoops! There was a problem deleting user')
+            return render_template('add_user.html',
+                form=form,
+                name=name,
+                our_users=our_users)
+    else:
+        flash("Sorry, you can't delete that user")
+        return redirect(url_for('dashboard'))
 
 @app.route('/posts/delete/<int:id>')
 @login_required
@@ -479,32 +484,7 @@ class Users(db.Model, UserMixin):
 
 
 # Powershell
-# $env:FLASK_APP = "39_heroku.py" 
+# $env:FLASK_APP = "41_fix_profile_picture.py" 
 # $env:FLASK_ENV = "development"
 # flask run
 
-# heroku -v (version)
-# pip install gunicorn
-# pip install psycopg2
-# pip freeze > requirements.txt
-# echo web: gunicorn app:app > Procfile
-# heroku login
-# heroku create flasker100
-# ==> https://flasker100.herokuapp.com/ | https://git.heroku.com/flasker100.git
-# heroku addons:create heroku-postgresql:hobby-dev --app flasker100
-# ==> Created postgresql-vertical-43113 as DATABASE_URL
-# heroku config --app flasker100
-# ==> postgres://bykumakribcwqu:1a469d223591b39d36bb875d0b807aebafa386634f9a24523bfc52251d2ca828@ec2-3-211-6-217.compute-1.amazonaws.com:5432/d7m2dgc3utq5ib
-# git init
-# git add .
-# git commit -am 'tweaked app for heroku'
-# git push
-# git push heroku main
-# support ticket : a7b5a1c6-808f-89b9-9518-384b5d648e41 
-# https://help.heroku.com/sharing/15668342-ff9e-4f00-8ca3-f6a37c09e281
-# https://help.heroku.com/sharing/c53ee8e2-0822-4623-9412-bdcf1508d133
-
-# heroku run python
-# >>> from app impport db
-# >>> db.create_all()
-# >>> exit()
