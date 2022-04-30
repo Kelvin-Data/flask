@@ -11,9 +11,10 @@ def index():
 # flask run
 
 # heroku login
-# heroku git:remote -a great112
 
 # git init 
-# git commit -am 'geat'
+# heroku git:remote -a great112
+
 # git add .
+# git commit -am "make it better"
 # git push heroku main
