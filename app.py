@@ -489,12 +489,12 @@ class Users(db.Model, UserMixin):
 # pip freeze > requirements.txt
 # echo web: gunicorn app:app > Procfile
 # heroku login
-# heroku create flasker100
+# heroku create flasker112
 # ==> https://flasker112.herokuapp.com/ | https://git.heroku.com/flasker112.git
 # heroku addons:create heroku-postgresql:hobby-dev --app flasker112
 # ==> Created postgresql-vertical-43113 as DATABASE_URL
 # heroku config --app flasker112
-# ==> postgres://gldvmvdwznyidc:eb760a3186483c19476eea454c41c0ecd88bdc1e827819516d356175b7f1ec0f@ec2-52-5-110-35.compute-1.amazonaws.com:5432/d8u6m6db96vck7
+# ==> postgres://shqgzimtomlwwg:505ec34bd738b4015be1d486a58e24c7dd16d58ab0edb7338072066fb1472b40@ec2-52-5-110-35.compute-1.amazonaws.com:5432/ddtpdbksl1jcvk
 # git init
 # git add .
 # git commit -am 'tweaked app for heroku'
