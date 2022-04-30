@@ -90,7 +90,7 @@ def add_user():
         form.password_hash = ''
 
         flash("User Added Successfully!")
-    our_users = Users.query.order_by(Users.date_added)
+        our_users = Users.query.order_by(Users.date_added)
 
     return render_template('add_user.html',
             form=form,
@@ -501,8 +501,9 @@ class Users(db.Model, UserMixin):
 # git push heroku main
 # support ticket : a7b5a1c6-808f-89b9-9518-384b5d648e41 
 # https://help.heroku.com/sharing/20bc3267-fd1b-42b4-b97f-3a90338bedd5
+# https://help.heroku.com/sharing/5ff5b94c-95dc-40bd-b83f-9d46d979bfed
 
 # heroku run python
-# >>> from app impport db
+# >>> from app import db
 # >>> db.create_all()
 # >>> exit()
