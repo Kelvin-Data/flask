@@ -1,3 +1,5 @@
+from fileinput import filename
+import profile
 from flask import Flask, redirect, render_template, flash, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -18,8 +20,8 @@ app = Flask(__name__) # help flask find the directory & file
 ckeditor = CKEditor(app)
 
 # Add Old Database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_2.db'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://bykumakribcwqu:1a469d223591b39d36bb875d0b807aebafa386634f9a24523bfc52251d2ca828@ec2-3-211-6-217.compute-1.amazonaws.com:5432/d7m2dgc3utq5ib'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_2.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://shqgzimtomlwwg:505ec34bd738b4015be1d486a58e24c7dd16d58ab0edb7338072066fb1472b40@ec2-52-5-110-35.compute-1.amazonaws.com:5432/ddtpdbksl1jcvk'
 
 # Secret key!
 app.config['SECRET_KEY'] = 'my super secret key that no one is supposed to know'
@@ -100,7 +102,7 @@ def add_user():
 @login_required
 def admin():
     id = current_user.id
-    if id == 3:
+    if id == 1:
         return render_template('admin.html')
     else: 
        flash("Sorry you must be an Admin in order to access the admin page!")
@@ -125,77 +127,62 @@ def dashboard():
         name_to_update.favourite_color = request.form['favourite_color']
         name_to_update.username = request.form['username']
         name_to_update.about_author = request.form['about_author']
+        name_to_update.profile_pic = request.files['profile_pic']
 
-        # Check for the profile pic 
-        if request.files['profile_pic']:
-            name_to_update.profile_pic = request.files['profile_pic']
-
-            # Grab image name
-            pic_filename = secure_filename(name_to_update.profile_pic.filename)
-            #set a uuid
-            pic_name = str(uuid.uuid1()) + "_" + pic_filename
-            # Save the image
-            saver = request.files['profile_pic']
-            
-            # Change it to a string to save to db
-            name_to_update.profile_pic = pic_name
-            try:
-                db.session.commit()
-                saver.save(os.path.join(app.config['UPLOAD_FOLDER'], pic_name))
-                flash('User Updated Successfully!')
-                return render_template('dashboard.html',
-                    form = form,
-                    name_to_update = name_to_update,
-                    id=id)
-
-            except:
-                flash('Error! Look like there was a problem...try again!')
-                return render_template('dashboard.html',
-                    form = form,
-                    name_to_update = name_to_update)   
-        else:
+        # Grab image name
+        pic_filename = secure_filename(name_to_update.profile_pic.filename)
+        #set a uuid
+        pic_name = str(uuid.uuid1()) + "_" + pic_filename
+        # Save the image
+        saver = request.files['profile_pic']
+        
+        # Change it to a string to save to db
+        name_to_update.profile_pic = pic_name
+        try:
             db.session.commit()
-            flash('User Update Successfully')
+            saver.save(os.path.join(app.config['UPLOAD_FOLDER']), pic_name)
+            flash('User Updated Successfully!')
             return render_template('dashboard.html',
-                    form = form,
-                    name_to_update = name_to_update
-                    )
+                form = form,
+                name_to_update = name_to_update,
+                id=id)
+
+        except:
+            flash('Error! Look like there was a problem...try again!')
+            return render_template('dashboard.html',
+                form = form,
+                name_to_update = name_to_update)   
     else:
         return render_template('dashboard.html',
             form = form,
             name_to_update = name_to_update,
             id=id)
-        #return render_template('dashboard.html')
+    return render_template('dashboard.html')
 
 # Define delete 
 @app.route('/delete/<int:id>')
-@login_required
 def delete(id):
-    if id == current_user.id:
-        user_to_delete = Users.query.get_or_404(id)
-        name = None
-        form = UserForm() 
+    user_to_delete = Users.query.get_or_404(id)
+    name = None
+    form = UserForm() 
 
-        try:
-            db.session.delete(user_to_delete)
-            db.session.commit()
-            flash('User Deleted Successfully!')
+    try:
+        db.session.delete(user_to_delete)
+        db.session.commit()
+        flash('User Deleted Successfully!')
 
-            our_users = Users.query.order_by(Users.date_added)
-            return render_template('add_user.html',
-                form=form,
-                name=name,
-                our_users=our_users)
+        our_users = Users.query.order_by(Users.date_added)
+        return render_template('add_user.html',
+            form=form,
+            name=name,
+            our_users=our_users)
 
-        except:
-            flash('Whoops! There was a problem deleting user')
-            return render_template('add_user.html',
-                form=form,
-                name=name,
-                our_users=our_users)
-    else:
-        flash("Sorry, you can't delete that user")
-        return redirect(url_for('dashboard'))
+    except:
+        flash('Whoops! There was a problem deleting user')
+        return render_template('add_user.html',
+            form=form,
+            name=name,
+            our_users=our_users)
 
 @app.route('/posts/delete/<int:id>')
 @login_required
@@ -492,7 +479,30 @@ class Users(db.Model, UserMixin):
 
 
 # Powershell
-# $env:FLASK_APP = "42_null_profile_pic.py" 
+# $env:FLASK_APP = "app.py" 
 # $env:FLASK_ENV = "development"
 # flask run
 
+# heroku -v (version)
+# pip install gunicorn
+# pip install psycopg2
+# pip freeze > requirements.txt
+# echo web: gunicorn app:app > Procfile
+# heroku login
+# heroku create flasker112
+# ==> https://flasker112.herokuapp.com/ | https://git.heroku.com/flasker112.git
+# heroku addons:create heroku-postgresql:hobby-dev --app flasker112
+# ==> Created postgresql-vertical-43113 as DATABASE_URL
+# heroku config --app flasker112
+# ==> postgres://shqgzimtomlwwg:505ec34bd738b4015be1d486a58e24c7dd16d58ab0edb7338072066fb1472b40@ec2-52-5-110-35.compute-1.amazonaws.com:5432/ddtpdbksl1jcvk
+# git init
+# git add .
+# git commit -am 'geat'
+# git push heroku main
+# support ticket : a7b5a1c6-808f-89b9-9518-384b5d648e41 
+# https://help.heroku.com/sharing/20bc3267-fd1b-42b4-b97f-3a90338bedd5
+
+# heroku run python
+# >>> from app impport db
+# >>> db.create_all()
+# >>> exit()
