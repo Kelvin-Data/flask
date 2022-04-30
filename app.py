@@ -479,7 +479,7 @@ class Users(db.Model, UserMixin):
 
 
 # Powershell
-# $env:FLASK_APP = "39_heroku.py" 
+# $env:FLASK_APP = "app.py" 
 # $env:FLASK_ENV = "development"
 # flask run
 
