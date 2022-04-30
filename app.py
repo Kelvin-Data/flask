@@ -497,12 +497,10 @@ class Users(db.Model, UserMixin):
 # ==> postgres://shqgzimtomlwwg:505ec34bd738b4015be1d486a58e24c7dd16d58ab0edb7338072066fb1472b40@ec2-52-5-110-35.compute-1.amazonaws.com:5432/ddtpdbksl1jcvk
 # git init
 # git add .
-# git commit -am 'tweaked app for heroku'
-# git push
+# git commit -am 'geat'
 # git push heroku main
 # support ticket : a7b5a1c6-808f-89b9-9518-384b5d648e41 
-# https://help.heroku.com/sharing/15668342-ff9e-4f00-8ca3-f6a37c09e281
-# https://help.heroku.com/sharing/c53ee8e2-0822-4623-9412-bdcf1508d133
+# https://help.heroku.com/sharing/20bc3267-fd1b-42b4-b97f-3a90338bedd5
 
 # heroku run python
 # >>> from app impport db
