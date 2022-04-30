@@ -490,11 +490,11 @@ class Users(db.Model, UserMixin):
 # echo web: gunicorn app:app > Procfile
 # heroku login
 # heroku create flasker100
-# ==> https://flasker100.herokuapp.com/ | https://git.heroku.com/flasker100.git
-# heroku addons:create heroku-postgresql:hobby-dev --app flasker100
+# ==> https://flasker112.herokuapp.com/ | https://git.heroku.com/flasker112.git
+# heroku addons:create heroku-postgresql:hobby-dev --app flasker112
 # ==> Created postgresql-vertical-43113 as DATABASE_URL
-# heroku config --app flasker100
-# ==> postgres://bykumakribcwqu:1a469d223591b39d36bb875d0b807aebafa386634f9a24523bfc52251d2ca828@ec2-3-211-6-217.compute-1.amazonaws.com:5432/d7m2dgc3utq5ib
+# heroku config --app flasker112
+# ==> postgres://gldvmvdwznyidc:eb760a3186483c19476eea454c41c0ecd88bdc1e827819516d356175b7f1ec0f@ec2-52-5-110-35.compute-1.amazonaws.com:5432/d8u6m6db96vck7
 # git init
 # git add .
 # git commit -am 'tweaked app for heroku'
