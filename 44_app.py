@@ -497,3 +497,7 @@ class Users(db.Model, UserMixin):
 # $env:FLASK_ENV = "development"
 # flask run
 
+# git add .
+# git commit -am 'geat'
+# git push heroku main
+

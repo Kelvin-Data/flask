@@ -21,7 +21,7 @@ ckeditor = CKEditor(app)
 
 # Add Old Database
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_2.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://bykumakribcwqu:1a469d223591b39d36bb875d0b807aebafa386634f9a24523bfc52251d2ca828@ec2-3-211-6-217.compute-1.amazonaws.com:5432/d7m2dgc3utq5ib'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://shqgzimtomlwwg:505ec34bd738b4015be1d486a58e24c7dd16d58ab0edb7338072066fb1472b40@ec2-52-5-110-35.compute-1.amazonaws.com:5432/ddtpdbksl1jcvk'
 
 # Secret key!
 app.config['SECRET_KEY'] = 'my super secret key that no one is supposed to know'
