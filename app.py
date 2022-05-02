@@ -20,7 +20,7 @@ app = Flask(__name__) # help flask find the directory & file
 ckeditor = CKEditor(app)
 
 # Add Old Database
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_2.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_2.db'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://shqgzimtomlwwg:505ec34bd738b4015be1d486a58e24c7dd16d58ab0edb7338072066fb1472b40@ec2-52-5-110-35.compute-1.amazonaws.com:5432/ddtpdbksl1jcvk'
 
 # Secret key!
@@ -90,8 +90,8 @@ def add_user():
         form.password_hash = ''
 
         flash("User Added Successfully!")
-        our_users = Users.query.order_by(Users.date_added)
-
+    
+    our_users = Users.query.order_by(Users.date_added)
     return render_template('add_user.html',
             form=form,
             name=name,
@@ -157,7 +157,7 @@ def dashboard():
             form = form,
             name_to_update = name_to_update,
             id=id)
-    return render_template('dashboard.html')
+        return render_template('dashboard.html')
 
 # Define delete 
 @app.route('/delete/<int:id>')
@@ -498,7 +498,8 @@ class Users(db.Model, UserMixin):
 # git init
 # git add .
 # git commit -am 'geat'
-# git push heroku main
+# git push heroku 
+# heroku git:remote -a flasker112
 # support ticket : a7b5a1c6-808f-89b9-9518-384b5d648e41 
 # https://help.heroku.com/sharing/20bc3267-fd1b-42b4-b97f-3a90338bedd5
 # https://help.heroku.com/sharing/5ff5b94c-95dc-40bd-b83f-9d46d979bfed
