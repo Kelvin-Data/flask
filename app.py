@@ -83,11 +83,11 @@ def add_user():
             db.session.add(user)
             db.session.commit()
         name = form.name.data
-        form.username.data = ''
         form.name.data = ''
+        form.username.data = ''
         form.email.data = ''
         form.favourite_color.data = ''
-        form.password_hash = ''
+        form.password_hash.data = ''
 
         flash("User Added Successfully!")
     
