@@ -21,7 +21,7 @@ ckeditor = CKEditor(app)
 
 # Add Old Database
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_2.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://shqgzimtomlwwg:505ec34bd738b4015be1d486a58e24c7dd16d58ab0edb7338072066fb1472b40@ec2-52-5-110-35.compute-1.amazonaws.com:5432/ddtpdbksl1jcvk'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://rslkwkvhaqbpns:ad4647423910973113b6f55c35e4c062ed6473f9f675a38625fb98e593dcc623@ec2-3-217-113-25.compute-1.amazonaws.com:5432/dfkrokooam6fcd'
 
 # Secret key!
 app.config['SECRET_KEY'] = 'my super secret key that no one is supposed to know'
@@ -492,17 +492,15 @@ class Users(db.Model, UserMixin):
 # heroku create flasker112
 # ==> https://flasker112.herokuapp.com/ | https://git.heroku.com/flasker112.git
 # heroku addons:create heroku-postgresql:hobby-dev --app flasker112
-# ==> Created postgresql-vertical-43113 as DATABASE_URL
+# ==> Created postgresql-opaque-96705 as DATABASE_URL
 # heroku config --app flasker112
-# ==> postgres://shqgzimtomlwwg:505ec34bd738b4015be1d486a58e24c7dd16d58ab0edb7338072066fb1472b40@ec2-52-5-110-35.compute-1.amazonaws.com:5432/ddtpdbksl1jcvk
+# ==> postgres://rslkwkvhaqbpns:ad4647423910973113b6f55c35e4c062ed6473f9f675a38625fb98e593dcc623@ec2-3-217-113-25.compute-1.amazonaws.com:5432/dfkrokooam6fcd
 # git init
 # git add .
 # git commit -am 'geat'
-# git push heroku 
+# git push heroku main
 # heroku git:remote -a flasker112
-# support ticket : a7b5a1c6-808f-89b9-9518-384b5d648e41 
-# https://help.heroku.com/sharing/20bc3267-fd1b-42b4-b97f-3a90338bedd5
-# https://help.heroku.com/sharing/5ff5b94c-95dc-40bd-b83f-9d46d979bfed
+
 
 # heroku run python
 # >>> from app import db
