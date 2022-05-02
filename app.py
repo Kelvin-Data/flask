@@ -504,3 +504,4 @@ class Users(db.Model, UserMixin):
 # heroku run python
 # >>> from app import db
 # >>> db.create_all()
+# >>> exit()
