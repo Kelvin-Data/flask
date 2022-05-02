@@ -21,7 +21,7 @@ ckeditor = CKEditor(app)
 
 # Add Old Database
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users_2.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://rslkwkvhaqbpns:ad4647423910973113b6f55c35e4c062ed6473f9f675a38625fb98e593dcc623@ec2-3-217-113-25.compute-1.amazonaws.com:5432/dfkrokooam6fcd'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://rslkwkvhaqbpns:ad4647423910973113b6f55c35e4c062ed6473f9f675a38625fb98e593dcc623@ec2-3-217-113-25.compute-1.amazonaws.com:5432/dfkrokooam6fcd'
 
 # Secret key!
 app.config['SECRET_KEY'] = 'my super secret key that no one is supposed to know'
@@ -496,13 +496,11 @@ class Users(db.Model, UserMixin):
 # heroku config --app flasker112
 # ==> postgres://rslkwkvhaqbpns:ad4647423910973113b6f55c35e4c062ed6473f9f675a38625fb98e593dcc623@ec2-3-217-113-25.compute-1.amazonaws.com:5432/dfkrokooam6fcd
 # git init
-# git add .
-# git commit -am 'geat'
-# git push heroku main
 # heroku git:remote -a flasker112
-
+# git add .
+# git commit -am 'great'
+# git push heroku main
 
 # heroku run python
 # >>> from app import db
 # >>> db.create_all()
-# >>> exit()
